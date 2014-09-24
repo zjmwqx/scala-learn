@@ -6,3 +6,41 @@
 - 此外，***Scala 中将函数也是对象，可以像参数那样传递给另一个函数的特征使得贷出模式更加有意义。***客户代码借贷了所需的资源，接下来如何使用这些资源以完成特定的任务则由客户决定。就像我们向银行贷款，这些钱的具体用途是客户决定，也是客户才明确的。
 
 - 对于此类资源，有数据库连接、IO操作等，这些是我们用完则务必立即释放的资源。而且，资源使用完毕业意味着将被自动回收，我们不必操心资源回收的过程。
+
+- 下面的代码使用借贷模式管理资源，并且使用了了柯里化技术。（使用SPark的word-vec的输出保存）
+
+```
+  def writeFile(fileName: File)(operation: PrintWriter => Unit) {
+    val pw = new PrintWriter(fileName) // 贷出资源writer 
+    try {
+      operation(pw) // 客户使用资源 
+    } finally {
+      pw.close() // 用完则释放被回收 
+    }
+  }
+
+  def print2Text(file: File, model: Word2VecModel, wordVec:Word2Vec) {
+    writeFile(file) {
+      // 使用资源的具体操作 
+      writer =>
+        writer.println(model.getModel.size)
+        writer.println(wordVec.getVectorSize)
+        model.getModel.map(x => {writer.print(x._1+" "+
+            x._2.map(_.toString).reduceLeft(_+ " " +_))
+            writer.println()})
+    }
+  }
+```
+##柯里化
+```
+  def add(x:Int) = (y:Int) => x + y
+```
+是普通函数
+```
+  def add(x:Int) = (y:Int) => x + y
+```
+是柯里化后的函数,相当于***返回一个匿名函数表达式***。 
+简写为
+```
+  def add(x:Int)(y:Int) = x + y
+```
