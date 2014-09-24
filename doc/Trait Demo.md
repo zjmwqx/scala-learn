@@ -10,7 +10,8 @@ class OneClass extends JsonAble{}
 trait OneTrait extends OneClass with ForEachAble[Int]{}
 ```
 
-- 下面这个例子是给java.util.ArrayList添加了foreach的功能。相當於定義了匿名類繼承ArrayList和ForEachAble
+- 下面这个例子是给java.util.ArrayList添加了foreach的功能。**相當於定義了匿名類繼承ArrayList和ForEachAble**
+- **聲明在一個類中，定義在另一個類,跨類調用**
 ```
 trait ForEachAble[A] {
   def iterator: java.util.Iterator[A] //interface function,聲明在一個類中，定義在另一個類,跨類調用
@@ -31,5 +32,4 @@ object TraitDemo extends Application {
   list.foreach(x => println(x))
 }
 ```
-- 
 
