@@ -7,7 +7,7 @@
 
 - 对于此类资源，有数据库连接、IO操作等，这些是我们用完则务必立即释放的资源。而且，资源使用完毕业意味着将被自动回收，我们不必操心资源回收的过程。
 
-- 下面的代码使用借贷模式管理资源。（使用SPark的word-vec的输出保存）
+- 下面的代码使用借贷模式管理资源，并且使用了了柯里化技术。（使用SPark的word-vec的输出保存）
 
 ```
   def writeFile(fileName: File)(operation: PrintWriter => Unit) {
@@ -30,4 +30,17 @@
             writer.println()})
     }
   }
+```
+##柯里化
+```
+  def add(x:Int) = (y:Int) => x + y
+```
+是普通函数
+```
+  def add(x:Int) = (y:Int) => x + y
+```
+是柯里化后的函数,相当于***返回一个匿名函数表达式***。 
+简写为
+```
+  def add(x:Int)(y:Int) = x + y
 ```
