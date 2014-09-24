@@ -18,7 +18,7 @@ list.map(_ split " ").map(_.count(_ == "msg")).reduceLeft(_+_)
 ```
 val ll = list.map(_.split(" ")).map(_.toList).reduceLeft(_:::_).count(_ == "msg")
 ```
-###寫法四：拼接，不用count，用reduce,這裏有個trick,必須先bool2int,如果直接reduceLeft(_.toString, _.toString)會報錯，
+###寫法四：拼接，不用count，用reduce,這裏有個trick,必須先bool2int,如果直接reduceLeft(_.toString, _.toString)會報錯
 - **原因是reduce的輸入輸出類型必須保證一致**
 ```
 implicit def bool2int(b:Boolean)= if (b) 1 else 0
