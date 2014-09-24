@@ -10,7 +10,7 @@ object CallByName extends Application {
   }
   func2("hello"+ 1/0)
   val assertionsEnabled = true
-  def boolAssert(pred: Boolean) =
+  def boolAssert(pred: =>Boolean) =
   {
     if(assertionsEnabled && !pred)
       throw new AssertionError
