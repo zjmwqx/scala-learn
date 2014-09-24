@@ -1,7 +1,7 @@
 #case class 的逐漸抽象
 - case class 顾名思义就是为case语句专门设计的类：
   在普通类的基础上添加了和类名一直的工厂方法， 还添加了hashcode,equals和toString等方法。
-  下面的例子把算法流程抽象化爲case class,並且利用case調度
+  **下面的例子把算法流程抽象化爲case class,並且利用case調度**
 ```
 object CaseFunction extends Application{
 	def fibonacci(in: Any): Int = in match{
