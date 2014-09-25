@@ -15,7 +15,7 @@ def withClose(closeAble: {def close():Unit})(op:{def close():Unit} =>Unit)
 	val conn : Connection = new Connection()
 	withClose(conn)(conn=>println("do something with Connection"))
 ```
-#Generic（范行）：返回值更加靈活
+#Generic（范形）：返回值更加靈活
 ```
 def withClose[A <:{def close():Unit},B](closeAble: A)(op: A =>B): B =
 	{
