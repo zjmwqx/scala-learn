@@ -4,11 +4,11 @@
 class Person(val firstName: String, val lastName: String)
 {
   private var _age = 0
-  def func :()=>String = ()=>firstName //get
+  def func :()=>String = ()=>firstName //get，通過lateral函數
   //equal to
-  def func2 :String = firstName //get
+  def func2 :String = firstName //get，通過普通函數
   //equal to 
-  def func3 = firstName //get
+  def func3 = firstName //get，普通函數省略
   //with parameter
   def func4(newAge: Int) = _age = newAge //set
   //won't compile
