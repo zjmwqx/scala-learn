@@ -9,16 +9,18 @@
 ```
   object CallByName extends Application {
   val isWrong = false
+  //按值，有異常
   def func1(msg: String) = {
     if(isWrong) println(msg)
   }
+  //按函數名稱，無異常，因爲if跳過
   def func2(msg: => String)={
     if(isWrong) println(msg)
   }
   func2("hello"+ 1/0)
   
   val assertionsEnabled = false
-  def boolAssert(pred: =>Boolean) = //傳入的不是值，是函數代碼
+  def boolAssert(pred: =>Boolean) = //傳入的不是值，是函數代碼的名稱
   {
     if(assertionsEnabled && !pred)
       throw new AssertionError
