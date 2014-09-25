@@ -18,7 +18,7 @@
   func2("hello"+ 1/0)
   
   val assertionsEnabled = false
-  def boolAssert(pred: =>Boolean) =
+  def boolAssert(pred: =>Boolean) = //傳入的不是值，是函數代碼
   {
     if(assertionsEnabled && !pred)
       throw new AssertionError
