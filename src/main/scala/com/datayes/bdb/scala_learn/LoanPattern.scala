@@ -6,7 +6,7 @@ import java.util._
  *
  */
 
-object LoanPattern extends Application {
+object LoanPattern extends App{
 	def writeFileProxy(file:File, op:PrintWriter => Unit)
 	{
 	  val pw = new PrintWriter(file)
@@ -25,8 +25,31 @@ object LoanPattern extends Application {
 	    sc.close
 	  }
 	}
-	val file = new File("testDoc/loanPatern.md")
+	val file = new File("README.md")
 	writeFileProxy(file, pw => pw.println("hello zjm" + new java.util.Date()))
 	readFileProxy(file, sc=>println(sc.nextLine()))
+
+  trait TAction {
+    def doAction
+  }
+  trait TRead extends TAction {
+    def doAction= {
+      val sc = new Scanner(file)
+      try{
+        println("do log")
+        //super.doAction
+      }finally {
+        sc.close
+      }
+    }
+  }
+
+  class RealAction extends TRead{
+    override def doAction = {
+      println("do action")
+    }
+  }
+  val readAction = new RealAction
+  readAction.doAction
 }
 
