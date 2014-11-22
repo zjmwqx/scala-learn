@@ -1,10 +1,8 @@
 package com.datayes.bdb.scala_learn
-import java.io._
-import java.util._
-/**
- * loan pattern : resource management
- *
- */
+
+import java.io.{PrintWriter, File}
+import java.util.Scanner
+
 
 object LoanPattern extends App{
 	def writeFileProxy(file:File, op:PrintWriter => Unit)
